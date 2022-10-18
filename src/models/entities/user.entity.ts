@@ -9,7 +9,7 @@ export default class UserEntity {
   username: string;
 
   @Column({ name: 'ativo', type: 'boolean' })
-  password: boolean;
+  active: boolean;
 
   @Column({
     name: 'criado_em',
