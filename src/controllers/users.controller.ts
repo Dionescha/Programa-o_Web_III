@@ -23,10 +23,11 @@ export class UsersController {
   updateName(@Param('id') id: string, @Query('name') name: string) {
     return this.usersService.updateName(+id, name);
   }
+
   @Patch(':id')
   @ApiCreatedResponse({ type: UsersOutput })
   active(@Param('id') id: string, @Query('active') active: boolean) {
-    return this.usersService.active(+id, active);
+    //return this.usersService.active(+id, active);//
   }
   @Delete(':id')
   remove(@Param('id') id: string) {
