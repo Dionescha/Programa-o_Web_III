@@ -2,8 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import UserEntity from '../models/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import UsersOutput from '../models/dto/output/users.output';
+
+import usersoutput from '../models/dto/output/users.output';
 import UsersConverter from '../models/converters/users.converter';
+import UsersInput from '../models/dto/input/users.input';
 
 @Injectable()
 export class UsersService {
@@ -17,23 +19,39 @@ export class UsersService {
     return this.userRepo.find();
   }
 
-  async findOne(id: number) {
-    const UserEntity = await this.userRepo.findOne({ where: { id: id } });
+  async save(input: UsersInput) {
+    const entity = new UserEntity();
 
-    const output = this.usersConverter.entityToOutput(UserEntity);
+    const convertedEntity = this.usersConverter.inputToEntity(input, entity);
+
+    const savedEntity = await this.userRepo.save(convertedEntity);
+
+    const output = this.usersConverter.entityToOutput(savedEntity);
+
+    return output;
+  }
+
+  async findOne(id: number) {
+    const userEntity = await this.userRepo.findOne({ where: { id: id } });
+
+    const output = this.usersConverter.entityToOutput(userEntity);
+
     return output;
   }
 
   async updateName(id: number, name: string) {
-    const UserEntity = await this.userRepo.findOne({ where: { id } });
+    const userEntity = await this.userRepo.findOne({ where: { id } });
 
-    UserEntity.username = name;
+    userEntity.username = name;
 
-    const userSaved = await this.userRepo.save(UserEntity);
+    const userSaved = await this.userRepo.save(userEntity);
+
     const output = this.usersConverter.entityToOutput(userSaved);
+
     return output;
   }
-}
 
-// remove(id: number) {//
-//return this.userRepo.remove();//
+  remove(id: number) {
+    return `This action removes a #${id} user`;
+  }
+}
