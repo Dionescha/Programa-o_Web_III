@@ -18,6 +18,7 @@ import UserEntity from './models/entities/user.entity';
       database: process.env.DB_NAME,
       entities: [UserEntity],
       synchronize: false,
+      // migrations: ['./src/migrations/*.ts'],
       ssl: {
         rejectUnauthorized: false,
       },
