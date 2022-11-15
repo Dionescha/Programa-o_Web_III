@@ -62,7 +62,7 @@ export class UsersService {
   async updateName(id: number, name: string) {
     const userEntity = await this.userRepo.findOne({ where: { id } });
 
-    userEntity.username = name;
+    userEntity.name = name;
 
     const userSaved = await this.userRepo.save(userEntity);
 

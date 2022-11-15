@@ -8,7 +8,8 @@ import UsersInput from '../dto/input/users.input';
 export default class UsersConverter {
   inputToEntity(input: UsersInput, entity: UserEntity) {
     entity.id = input.id;
-    entity.username = input.name;
+    entity.name = input.name;
+    entity.password = input.password;
     entity.active = input.active;
     entity.createdAt = new Date();
     entity.updatedAt = new Date();
@@ -20,7 +21,7 @@ export default class UsersConverter {
     const output = new UsersOutput();
 
     output.id = entity.id;
-    output.name = entity.username;
+    output.name = entity.name;
     output.active = entity.active;
     output.createdAt = entity.createdAt;
     output.updatedAt = entity.updatedAt;

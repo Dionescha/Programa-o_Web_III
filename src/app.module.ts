@@ -3,9 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './modules/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TypeOrmConfigAsync } from './infrastructure/db/typeorm.config';
-import { AppConfigModule } from './appConfig,module';
-import UserEntity from './models/entities/user.entity';
+import { AppConfigModule } from './appConfig.module';
+import { FavoriteMoviesModule } from './modules/favoriteMovies.module';
 
 @Module({
   imports: [
@@ -16,9 +15,8 @@ import UserEntity from './models/entities/user.entity';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [UserEntity],
+      entities: ['./src/models/entities/*.ts'],
       synchronize: false,
-      // migrations: ['./src/migrations/*.ts'],
       ssl: {
         rejectUnauthorized: false,
       },
@@ -26,6 +24,7 @@ import UserEntity from './models/entities/user.entity';
     }),
     AppConfigModule,
     UsersModule,
+    FavoriteMoviesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
