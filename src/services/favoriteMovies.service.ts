@@ -33,6 +33,9 @@ export class favoriteMoviesService {
       entity,
     );
 
+    // buscar a entidade do usuario (userEntity) pelo id
+    // atribuir essa entidade no convertedENtity.user
+
     const savedEntity = await this.userRepo.save(convertedEntity);
 
     const output = this.favoriteMoviesConverter.entityToOutput(savedEntity);
@@ -81,7 +84,7 @@ export class favoriteMoviesService {
 
     return output;
   }
-  s;
+
   async remove(id: number) {
     return await this.userRepo.delete(id);
   }

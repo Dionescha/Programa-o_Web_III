@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
+import UserEntity from './user.entity';
 
 @Entity('filmes_favoritos')
 export default class favoriteMoviesEntity {
@@ -11,8 +12,9 @@ export default class favoriteMoviesEntity {
   @Column({ name: 'imagem', type: 'varchar' })
   imagem: string;
 
-  @Column({ name: 'user_Id', type: 'varchar' })
-  user_id: string;
+  /*@ManyToOne(() => UserEntity, (usuarios) => usuarios.filmesFavoritos)
+  @JoinColumn({ name: 'user_id' })
+  user: number; */
 
   @Column({
     name: 'criado_em',

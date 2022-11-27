@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import favoriteMoviesConverter from '../converters/favoriteMovies.converter';
+import favoriteMoviesEntity from '../entities/favoriteMovies.entity';
 @Entity('usuarios')
 export default class UserEntity {
   @PrimaryGeneratedColumn()
@@ -13,6 +14,12 @@ export default class UserEntity {
 
   @Column({ name: 'ativo', type: 'boolean' })
   active: boolean;
+
+  /*@OneToMany(
+    () => favoriteMoviesEntity,
+    (filmes_favoritos) => filmes_favoritos.user,
+  )
+  filmesFavoritos: favoriteMoviesEntity[];*/
 
   @Column({
     name: 'criado_em',

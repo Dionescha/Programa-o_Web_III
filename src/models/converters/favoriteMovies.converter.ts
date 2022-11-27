@@ -10,10 +10,9 @@ export default class favoriteMoviesConverter {
     entity.id = input.id;
     entity.titulo = input.titulo;
     entity.imagem = input.imagem;
-    entity.user_id = input.user_Id;
     entity.createdAt = new Date();
     entity.updatedAt = new Date();
-
+    /*entity.user = input.UserEntity;*/
     return entity;
   }
 
@@ -23,9 +22,9 @@ export default class favoriteMoviesConverter {
     output.id = entity.id;
     output.titulo = entity.titulo;
     output.imagem = entity.imagem;
-    output.user_ID = entity.user_id;
     output.createdAt = entity.createdAt;
     output.updatedAt = entity.updatedAt;
+    /*output.UserEntity = entity.user;*/
 
     return output;
   }

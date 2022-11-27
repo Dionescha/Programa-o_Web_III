@@ -10,6 +10,9 @@ export default class favoriteMoviesInput {
   @ApiProperty()
   imagem: string;
 
+  /* @ApiProperty()
+  UserEntity: number;
+
   @ApiProperty()
-  user_Id: string;
+  favoriteMoviesInput: number; */
 }

@@ -1,39 +1,19 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export class CreateFavoriteMovies1668467934808 implements MigrationInterface {
+export class AlterFavoriteMovies16687671588888 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.createTable(
-      new Table({
-        name: 'filmes_favoritos',
-        columns: [
-          {
-            name: 'id',
-            type: 'integer',
-            isPrimary: true,
-            isGenerated: true,
-            generationStrategy: 'increment',
-          },
-          {
-            name: 'titulo',
-            type: 'varchar(200)',
-          },
-          {
-            name: 'imagem',
-            type: 'varchar(1000)',
-          },
-          {
-            name: 'user_id',
-            type: 'integer',
-          },
-          {
-            name: 'criado_em',
-            type: 'timestamp',
-          },
-          {
-            name: 'atualizado_em',
-            type: 'timestamp',
-          },
-        ],
+    await queryRunner.createForeignKey(
+      'filmes_favoritos',
+      new TableForeignKey({
+        columnNames: ['user_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'usuarios',
+        onDelete: 'CASCADE',
       }),
     );
   }

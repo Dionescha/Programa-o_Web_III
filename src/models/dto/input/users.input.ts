@@ -12,4 +12,10 @@ export default class UsersInput {
 
   @ApiProperty()
   active: boolean;
+
+  /*@ApiProperty()
+  UserEntity: number;
+
+  @ApiProperty()
+  favoriteMovies: number;*/
 }

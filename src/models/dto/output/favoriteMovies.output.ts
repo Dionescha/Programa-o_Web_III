@@ -10,8 +10,8 @@ export default class favoriteMoviesOutput {
   @ApiProperty()
   imagem: string;
 
-  @ApiProperty()
-  user_ID: string;
+  /* @ApiProperty()
+  UserEntity: number;*/
 
   @ApiProperty()
   createdAt: Date;
